@@ -33,7 +33,7 @@ def inicio():
 @app.route('/Usuarios/iniciarSesion')
 def mostrar_login():
     if current_user.is_authenticated:
-        return render_template('principal.html')
+        return render_template('principal2.html')
     else:
         return render_template('usuarios/login.html')
 
@@ -44,7 +44,7 @@ def cargar_usuario(id):
 @app.route('/Usuarios/nuevo')
 def nuevoUsuario():
     if current_user.is_authenticated and not current_user.is_admin():
-        return render_template('principal.html')
+        return render_template('principal2.html')
     else:
         return render_template('usuarios/registrarCuenta.html')
 

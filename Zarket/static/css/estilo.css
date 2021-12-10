@@ -45,8 +45,8 @@ nav{
     margin-top:0%;
 }
 body{
-    /*background-color:rgb(88, 63, 63);*/
-    background-image: url('../img/Fondo.jpg');
+    background-color:#FFFFFF;
+    /*background-image: url('../img/Fondo.jpg');*/
     background-size: cover;
     opacity: 0.8;
 }
@@ -68,9 +68,16 @@ border-color: #7C8683;
 }
 .btn-default2
 {
-background-color: #010000;
+background-color: #8869A5;
 color:#FFF;
-border-color: #010000;
+border-color: #8869A5;
+text-align: center;
+width: 200px;
+height: 45px;
+}
+.btn-default2:hover {
+   color: #FFF;
+   background-color: #755A8F;
 }
 
 .caja
@@ -79,4 +86,9 @@ font-size: 36px;
 font-weight: bold;
 color: #ffffff;
 background:#212F3C
+}
+
+label{
+  display: inline-block;
+  width: 80px;
 }
