@@ -1,0 +1,44 @@
+{% extends 'comunes/base.html' %}
+{% block contenido %}
+    {{super()}}
+    {%if current_user.is_authenticated %}
+        <span style="font-color: #FFFFFF; font-size: 40pt; FONT-FAMILY: Helvetica;"></span>
+        </p>
+    {% endif %}
+    <div style="padding-left: 250pt;">
+        <img src="{{url_for('static',filename='img/LogoZarket.png')}}" alt="LogoZarket" width="500" height="200">
+        <br>
+        <br>
+
+        <label style="padding-left: 50pt; font-size: 20pt; color: #8095CE; white-space: nowrap; "><i>TE DAMOS LA BIENVENIDA</i></label>
+    </div>
+<br>
+<br>
+<br>
+ <form action="/validarSesion" method="post" class="form-horizontal">
+    <div class="imput-group " style="padding-left: 320pt;">
+        <label class="col-sm-2">Usuario:</label>
+        <input type="text" name="nomUsu" placeholder="Usuario"  required>
+        <br>
+        <br>
+        <label class="col-sm-2">Contraseña:</label>
+        <input type="password" name="password" placeholder="Contraseña"  required>
+    </div>
+<br>
+
+    <div style="padding-left: 370pt;">
+        <input class="btn btn-default2" type="submit" value="Iniciar sesión">
+        <!--<a class="btn btn-default2"  >
+            <span style=" font-size: 18pt; FONT-FAMILY: Helvetica;">Iniciar Sesion</span>
+        </a>-->
+    </div>
+<br>
+</form>
+    <div style="padding-left: 220pt;">
+        <label style="font-size: 15pt; color: #000000; white-space: nowrap; "><i><b>"Eficiencia, orden y creatividad para llegar a ser el número uno"</b></i></label>
+    </div>
+<br>
+<br>
+        <label style="font-size: 15pt; color: #D9D9D9; white-space: nowrap; padding-left: 340pt;">Zamora, Michoacán, México.</label>
+
+{% endblock %}

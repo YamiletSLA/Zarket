@@ -1,0 +1,32 @@
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="/"><span class="glyphicon glyphicon-menu-leftglyphicon glyphicon-menu-left"></span></a></li>
+
+      {% if current_user.is_authenticated %}
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">PEDIDOS
+        <span class="caret"></span></a>
+      </li>
+      {% endif %}
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+            {% if not current_user.is_authenticated %}
+            <li style="float:right"><a href="/Usuarios/iniciarSesion"><span class="glyphicon glyphicon-log-in"></span> Iniciar Sesion</a></li>
+            {% else %}
+            <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                <span class="glyphicon glyphicon-user"></span> {{current_user.nombreCompleto}}
+              <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="/Usuarios/verPerfil"><span class="glyphicon glyphicon-edit"></span>  Editar mi perfil</a></li>
+                <li><a href="/Usuarios/cerrarSesion"><span class="glyphicon glyphicon-log-out"></span> Cerrar Sesion</a></li>
+                {% if current_user.is_comprador() %}
+                <li><a href="/Tarjetas"><span class="glyphicon glyphicon-credit-card"> Tarjetas</span></a></li>
+                {% endif %}
+              </ul>
+            </li>
+            {% endif %}
+      </ul>
+  </div>
+</nav>

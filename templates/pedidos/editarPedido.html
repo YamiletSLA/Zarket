@@ -1,0 +1,97 @@
+{% extends 'comunes/base.html' %}
+{% block navbar %}
+    {{super()}}
+    {% include 'comunes/menu.html' %}
+{% endblock %}
+{% block contenido %}
+{{super()}}
+<div>
+    <h1 class="bg-primary text-center">Edicion de Pedidos</h1>
+    <form action="/Pedidos/editarPedidos" method="POST" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="idPedido"> id Pedido: </label>
+            <input type="number" name="idPedido"  required class="form-control" value="{{ped.idPedido }}" readonly class="form-control">
+        </div>
+         <div class="form-group">
+            <label for="idComprador"> id Comprador: </label>
+            <input type="number" name="idComprador"  required class="form-control" value="{{ped.idComprador}}" readonly class="form-control">
+        </div>
+         <div class="form-group">
+            <label for="idVendedor"> id Vendedor: </label>
+            <input type="number" name="idVendedor"  required class="form-control" value="{{ped.idVendedor}}" readonly class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="idTarjeta"> id Tarjeta: </label>
+            <input type="number" name="idTarjeta"  required class="form-control" value="{{ped.idTarjeta}}" readonly class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="fechaRegistro">fecha de Registro:</label>
+            <input type="date" name="fechaRegistro"  required maxlength="100" value="{{ped.fechaRegistro}}" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="fechaAtencion">fecha de Atencion:</label>
+            <input type="date" name="fechaAtencion" required maxlength="100" value="{{ped.fechaAtencion}}" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="fechaRecepcion">fecha de Recepcion:</label>
+            <input type="date" name="fechaRecepcion" required maxlength="100" value="{{ped.fechaRecepcion}}" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="fechaCierre">fecha de Cierre:</label>
+            <input type="date" name="fechaCierre" required  maxlength="100" value="{{ped.fechaCierre}}" class="form-control">
+        </div>
+         <div class="form-group">
+            <label for="total">total:</label>
+            <input type="numbre" name="total" required maxlength="200" value="{{ped.total}}" class="form-control">
+        </div>
+        <div class="form-control">
+            <label for="estatus">Estatus:</label>
+            <select name="estatus">
+            {% if ped.estatus=='Activo' %}
+                <option selected>Activo</option>
+                <option>Pendiente</option>
+            {% else %}
+                <option>Activo</option>
+                <option selected>Pendiente</option>
+            {% endif %}
+            </select>
+        </div>
+
+           <button type="submit" class="btn btn-primary">
+                <span class="glyphicon glyphicon-floppy-disk"></span>
+                Guardar
+            </button>
+            <a href="#" class="btn btn-danger" data-toggle="modal" data-target="#eliminar">
+                <span class="glyphicon glyphicon-trash"></span>
+                Eliminar
+            </a>
+            <a href="/Pedidos" class="btn btn-info">
+                <span class="glyphicon glyphicon-arrow-left"></span>
+                Cancelar
+            </a>
+    </form>
+</div>
+<!-- Modal para ver el cuadro de dialogo de eliminar-->
+<div id="borrar" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Eliminación </h4>
+      </div>
+      <div class="modal-body">
+        <p>¿ Estas seguro de eliminar :<b>{{ped.idPedido}} ?</b> </p>
+      </div>
+      <div class="modal-footer">
+          <a class="btn btn-primary" href="/Pedidos/eliminar/{{ped.idPedido}}">Aceptar</a>
+          <button type="button" class="btn btn-info" data-dismiss="modal">Cancelar</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+</div>
+
+{% endblock %}

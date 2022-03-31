@@ -90,15 +90,9 @@ class Producto(db.Model):
 class Usuario(UserMixin,db.Model):
     __tablename__='Usuarios'
     idUsuario=Column(Integer,primary_key=True)
-    nombreCompleto=Column(String,nullable=False)
-    direccion=Column(String,nullable=False)
-    telefono=Column(String,nullable=False)
-    email=Column(String,unique=True)
+    Nombre=Column(String,nullable=False)
     password_hash=Column(String(128),nullable=False)
-    tipo=Column(String,nullable=False)
-    estatus=Column(String,nullable=False)
-    genero=Column(String,nullable=False)
-
+    Posicion=Column(String,nullable=False)
     @property #Implementa el metodo Get (para acceder a un valor)
     def password(self):
         raise AttributeError('El password no tiene acceso de lectura')
@@ -113,19 +107,20 @@ class Usuario(UserMixin,db.Model):
     def is_authenticated(self):
         return True
 
-    def is_active(self):
-        if self.estatus=='Activo':
-            return True
-        else:
-            return False
     def is_anonymous(self):
         return False
 
     def get_id(self):
         return self.idUsuario
 
+
     def is_admin(self):
         if self.tipo=='Administrador':
+            return True
+        else:
+            return False
+    def is_super(self):
+        if self.tipo=='Supervisor':
             return True
         else:
             return False
@@ -135,7 +130,7 @@ class Usuario(UserMixin,db.Model):
         else:
             return False
     def is_comprador(self):
-        if self.tipo=='Comprador':
+        if self.tipo=='Almacenista':
             return True
         else:
             return False

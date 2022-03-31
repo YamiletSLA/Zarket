@@ -1,0 +1,58 @@
+{% extends 'comunes/base.html' %}
+{% block navbar %}
+    {{super()}}
+    {% include 'comunes/menu.html' %}
+{% endblock %}
+{% block contenido %}
+{{super()}}
+<div>
+    <h1 class="caja text-center">Listado de Pedidos</h1>
+
+    <table style="text-align: center;" class="table table-striped">
+        <th style="text-align: center;">ID</th>
+        <th style="text-align: center;">ID COMPRADOR</th>
+        <th style="text-align: center;">ID VENDEDOR</th>
+        <th style="text-align: center;">ID TARJETA</th>
+        <th style="text-align: center;">FECHA DE REGISTRO</th>
+        <th style="text-align: center;">FECHA DE ATENCIÓN</th>
+        <th style="text-align: center;">FECHA DE CIERRE</th>
+        <th style="text-align: center;">FECHA DE RECEPCIÓN</th>
+        <th style="text-align: center;">TOTAL</th>
+        <th style="text-align: center;">ESTATUS</th>
+        <th style="text-align: center;">DETALLES</th>
+        <th style="text-align: center;">EDITAE</th>
+        {% for ped in pedidos %}
+            <tr style="text-align: center;">
+                <td style="text-align: center;">{{ped.idPedido}}</td>
+                <td style="text-align: center;">{{ped.idComprador}}</td>
+                <td>{{ped.idVendedor}}</td>
+                <td>{{ped.idTarjeta}}</td>
+                <td>{{ped.fechaRegistro}}</td>
+                <td>{{ped.fechaAtencion}}</td>
+                <td>{{ped.fechaCierre}}</td>
+                <td>{{ped.fechaRecepcion}}</td>
+                <td>{{ped.total}}</td>
+                <td>{{ped.estatus}}</td>
+
+                <td>
+                        <a href="/Pedidos/verpedidos/detallespedidos/{{ped.idPedido}}">
+                            <span  class="glyphicon glyphicon-eye-open"></span>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="/Pedidos/{{ped.idPedido}}">
+                            <span class="glyphicon glyphicon-edit"></span>
+                        </a>
+                    </td>
+
+            </tr>
+        {% endfor %}
+    </table>
+    {% if current_user.is_authenticated %}
+    <a href="/Pedidos/nuevo" class="btn btn-success">
+         <span class="glyphicon glyphicon-plus-sign"></span>
+        Agregar Categoria
+    </a>
+    {% endif %}
+</div>
+{% endblock %}
